@@ -8,7 +8,7 @@ sceneByName:
   scraper: sceneScraper
 sceneByQueryFragment:
   action: scrapeXPath
-  queryURL: "{url}"
+  queryURL: "https://www.pornhub.com/view_video.php?viewkey={url}"
   scraper: sceneScraper
 
 xPathScrapers:

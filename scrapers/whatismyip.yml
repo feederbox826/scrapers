@@ -1,0 +1,51 @@
+# IP test from cloudflare
+# https://speed.cloudflare.com/meta
+# You can read their privacy policy here
+# https://www.cloudflare.com/privacypolicy/
+
+name: What is my IP
+
+fragScraper: &fragScraper
+  action: scrapeJson
+  scraper: cfScraper
+  queryURL: https://speed.cloudflare.com/meta
+
+byURLScraper: &byURLScraper
+  - action: scrapeJson
+    url:
+      - https://what-is-my-ip.invalid
+    scraper: cfScraper
+    queryURL: "{url}"
+    queryURLReplace:
+      url:
+        - regex: '.+'
+          with: https://speed.cloudflare.com/meta
+
+sceneByURL: *byURLScraper
+groupByURL: *byURLScraper
+galleryByURL: *byURLScraper
+imageByURL: *byURLScraper
+
+sceneByFragment: *fragScraper
+galleryByFragment: *fragScraper
+imageByFragment: *fragScraper
+
+jsonScrapers:
+  cfScraper:
+    common:
+      # IP Address
+      $ip: clientIp
+      # ISP/ ASN (Host)
+      $asn: asOrganization
+      # Country, Region, City, Airport Code
+      $geo: "[country,region,city,colo]"
+    scene: &objResponse
+      Title: $ip
+      Studio:
+        Name: $asn
+      Tags:
+        Name: $geo
+    gallery: *objResponse
+    image: *objResponse
+
+# Last Updated June 22, 2025

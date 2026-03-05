@@ -1,0 +1,28 @@
+name: scrape-ci
+sceneByFragment:
+  action: scrapeJson
+  scraper: sceneQueryScraper
+  queryURL: https://scrape-ci.feederbox.cc/api/scrape/scene/{url}
+jsonScrapers:
+  sceneQueryScraper:
+    scene:
+      Title: result.title
+      Code: result.code
+      Details: result.details
+      Date: result.date
+      Image: result.image
+      Director: result.director
+      Groups:
+        Name: result.groups
+      URLs: result.urls
+      Performers:
+        Name: result.performers
+      Studio:
+        Name: result.studio
+      Tags:
+        Name: result.tags.#.raw
+driver:
+  headers:
+    - Key: x-api-key
+      Value: ssci_APIKEY
+# Last Updated: March 3, 2026

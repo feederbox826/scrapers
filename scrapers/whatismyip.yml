@@ -5,12 +5,7 @@
 
 name: What is my IP
 
-fragScraper: &fragScraper
-  action: scrapeJson
-  scraper: cfScraper
-  queryURL: https://speed.cloudflare.com/meta
-
-byURLScraper: &byURLScraper
+sceneByURL: &byURLScraper
   - action: scrapeJson
     url:
       - https://what-is-my-ip.invalid
@@ -20,13 +15,14 @@ byURLScraper: &byURLScraper
       url:
         - regex: '.+'
           with: https://speed.cloudflare.com/meta
-
-sceneByURL: *byURLScraper
 groupByURL: *byURLScraper
 galleryByURL: *byURLScraper
 imageByURL: *byURLScraper
 
-sceneByFragment: *fragScraper
+sceneByFragment: &fragScraper
+  action: scrapeJson
+  scraper: cfScraper
+  queryURL: https://speed.cloudflare.com/meta
 galleryByFragment: *fragScraper
 imageByFragment: *fragScraper
 
@@ -48,4 +44,9 @@ jsonScrapers:
     gallery: *objResponse
     image: *objResponse
 
-# Last Updated June 22, 2025
+driver:
+  headers:
+    - Key: "Referer"
+      Value: "https://speed.cloudflare.com"
+
+# Last Updated March 29, 2026

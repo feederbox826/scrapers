@@ -1,11 +1,10 @@
 # feederbox826 scrapers
 
-# coomer.su scrapers
-- fanslylookup
-- oflookup
-
 ## pornhub-videokey
 Fork of PornHub communityScrapers to search by video key (ph*)
+
+## scrape-ci
+one-click automated scraper https://discourse.stashapp.cc/t/scrape-ci/6005
 
 ## whatismyip
 Validates VPN/ proxy with "What is my IP"

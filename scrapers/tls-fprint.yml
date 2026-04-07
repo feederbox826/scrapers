@@ -1,0 +1,24 @@
+name: TLS Print
+
+sceneByURL: &byURLScraper
+  - action: scrapeJson
+    url:
+      - https://tls.peet.ws/api/clean
+    scraper: tlsScraper
+groupByURL: *byURLScraper
+galleryByURL: *byURLScraper
+imageByURL: *byURLScraper
+
+jsonScrapers:
+  tlsScraper:
+    common:
+      $peetprint: peetprint_hash
+      $akami: akamai_hash
+    scene: &objResponse
+      Title: $peetprint
+      Studio:
+        Name: $akami
+    gallery: *objResponse
+    image: *objResponse
+
+# Last Updated April 7, 2026
